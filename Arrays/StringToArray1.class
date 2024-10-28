@@ -1,0 +1,36 @@
+package com.shopping;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class customer {
+	public static void main(String[] args) {
+		// First Step - Load the driver
+		try {
+		Class.forName("org.postgresql.Driver");
+		System.out.println("Driver is loaded");
+		
+		//second step - create connection
+		
+		Connection conn=DriverManager.getConnection("jdbc:postgresql://localhost:5433/Shopping","postgres","root");
+		System.out.println("Connection is done");
+		
+		// third step - create statement
+		Statement stm=conn.createStatement();
+		System.out.println("Statement is created");
+		
+		// fourth step- execute query
+		
+		stm.execute("insert into customer values(1,'Pratiksha', 12345)");
+		System.out.println("Data inserted successfully");
+		
+		// fifth step - connection closing
+		conn.close();
+	}
+		catch(ClassNotFoundException | SQLException e)
+		{
+			e.printStackTrace();
+		}
+}
+}
